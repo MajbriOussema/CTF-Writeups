@@ -13,6 +13,7 @@ While decompiling using IDA, we can see that the program is leaking system addre
 - Calculate libc base address
 - find /bin/bash address
 - system("/bin/bash")
-````python
+```python
 from pwn import *
+s
 ```
