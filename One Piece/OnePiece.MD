@@ -22,11 +22,7 @@ Example : buffer = "A"*37 + "zz"
 
 the last operation will trigger a bufferoverflow, overwriting the **len** variable  by 0x89 which will be used in the fgets.
                       
-                      
-
-
-
-![task2](imgs/6.png)
+![task2](imgs/8.png)
 
 
 ### Exploitation
