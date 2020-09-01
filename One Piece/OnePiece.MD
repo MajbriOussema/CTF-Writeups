@@ -4,14 +4,16 @@
 We were given a 64bit ELF file.
 When we run the binary, the program is showing a menu , ( read run and exit ). The run function is useless, so we can only perform the read operation.
 
+![task2](imgs/5.png)
+
 But when decompiling the binary, we have one more option that is not shown in the menu message, which is "gomugomunomi" that calls mugiwara function.
 
 The **mugiwara** function seems a bit complicated,first it initialize an integer variable named  **len** to 40.
 
 Then it's copying each char of the buffer that we've read from the readSC function into another buffer.Inside the loop, it's checking if the char is 'z' 
-![task2](imgs/5.png)
 
-Running the binary, we can see that it's leaking an address, then asking for an input.
+![task2](imgs/7.png)
+
 
 ![task2](imgs/6.png)
 
