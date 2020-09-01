@@ -10,7 +10,16 @@ But when decompiling the binary, we have one more option that is not shown in th
 
 The **mugiwara** function seems a bit complicated,first it initialize an integer variable named  **len** to 40.
 
-Then it's copying each char of the buffer that we've read from the readSC function into another buffer.Inside the loop, it's checking if the char is 'z' 
+Then it's copying each char of the buffer that we've read from the readSC function into another buffer.Finally, it's using fgets to read "len" bytes.
+
+Inside the loop, it's checking if the char is 'z', if true, it'll execute buffer2[++i] = 0x89. So the idea is to trigger an off-bye-one bug by giving some buffer terminated by "zz". 
+
+Example : buffer = "A"*37 + "zz"
+When the loop reaches i = 37 ==> buffer[37] = 'z' , condition true, ==> buffer[++37] = buffer[38] = 0x89 , i++
+                      i = 39 ==> buffer[39] = 'z', condition true, ==> buffer[++39] = buffer[**40**] = 0x89 i++
+the last operation will trigger a bufferoverflow, overwriting the **len** variable  by 0x89 which will be used in the fgets.
+                      
+                      
 
 ![task2](imgs/7.png)
 
