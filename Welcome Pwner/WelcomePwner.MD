@@ -1,5 +1,5 @@
 
-![task](images/1.jpg)
+![task](imgs/1.png)
 ### Information
 It was a warmup challenge, 
 We were given a 32bit ELF file.
