@@ -17,6 +17,7 @@ Inside the loop, it's checking if the char is 'z', if true, it'll execute buffer
 Example : buffer = "A"*37 + "zz"
 - i = 37 ==> buffer[37] = 'z' , condition true, ==> buffer[++37] = buffer[38] = 0x89 , i++
 - i = 39 ==> buffer[39] = 'z', condition true, ==> buffer[++39] = buffer[**40**] = 0x89 i++
+
 the last operation will trigger a bufferoverflow, overwriting the **len** variable  by 0x89 which will be used in the fgets.
                       
                       
