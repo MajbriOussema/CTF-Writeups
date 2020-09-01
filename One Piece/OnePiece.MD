@@ -8,7 +8,7 @@ When we run the binary, the program is showing a menu , ( read run and exit ). T
 
 But when decompiling the binary, we have one more option that is not shown in the menu message, which is "gomugomunomi" that calls mugiwara function.
 
-The **mugiwara** function seems a bit complicated,first it initialize an integer variable named  **len** to 40.
+The **mugiwara** function seems a bit complicated,first it leaks a binary address and initialize an integer variable named  **len** to 40.
 
 Then it's copying each char of the buffer that we've read from the readSC function into another buffer.Finally, it's using fgets to read "len" bytes.
 
@@ -24,12 +24,18 @@ the last operation will trigger a bufferoverflow, overwriting the **len** variab
                       
 ![task2](imgs/8.png)
 
-
+It's simple now, the binary PIE is enabled, but we've got already a binary leak from the mugiwara function.
 ### Exploitation
+- read "A"*37 + "zz"
+- call gomugomunomi
+- rop chain 1: leak libc address bye calling puts and giving printf GOT address as an argument and returning to the main function.
 - Determine libc version (using [libc blucat](https://libc.blukat.me/) as an example)
 - Calculate libc base address
-- find /bin/bash address
-- system("/bin/bash")
+- find /bin/sh and system address
+- call gomugomunomi
+- rop chain 2: system("/bin/sh")
+
+
 ```python
 from pwn import *
 from time import sleep
