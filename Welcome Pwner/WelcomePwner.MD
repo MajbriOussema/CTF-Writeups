@@ -1,11 +1,11 @@
 
-![task](imgs/1.png)
+![task1](imgs/1.png)
 ### Information
 It was a warmup challenge, 
 We were given a 32bit ELF file.
-![task](images/2.jpg)
+![task1](imgs/2.png)
 Running the binary, we can see that it's leaking an address, then asking for an input.
-![task](images/3.jpg)
+![task1](imgs/3.png)
 
 While decompiling using IDA, we can see that the program is leaking system address, then reading an input using gets, and as we know , gets is a dangerous function that leads to buffer overflow.
 
