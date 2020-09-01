@@ -12,6 +12,8 @@ The **mugiwara** function seems a bit complicated,first it initialize an integer
 
 Then it's copying each char of the buffer that we've read from the readSC function into another buffer.Finally, it's using fgets to read "len" bytes.
 
+![task2](imgs/7.png)
+
 Inside the loop, it's checking if the char is 'z', if true, it'll execute buffer2[++i] = 0x89. So the idea is to trigger an off-bye-one bug by giving some buffer terminated by "zz". 
 
 Example : buffer = "A"*37 + "zz"
@@ -22,7 +24,6 @@ the last operation will trigger a bufferoverflow, overwriting the **len** variab
                       
                       
 
-![task2](imgs/7.png)
 
 
 ![task2](imgs/6.png)
